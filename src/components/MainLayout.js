@@ -18,11 +18,15 @@ import {AiOutlineDashboard, AiOutlineShoppingCart,AiOutlineUser,AiOutlineBgColor
 import {SiBrandfolder} from 'react-icons/si'
 import {BiCategoryAlt } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import logo from "../image/logo1.png"
 import {FaClipboardList , FaBloggerB} from 'react-icons/fa'
 const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const userState = useSelector((state) => state.auth.user);
+    console.log(userState ,"userState")
     const navigate = useNavigate();
     const {
         token: { colorBgContainer },
@@ -30,7 +34,7 @@ const MainLayout = () => {
   return (
     <Layout>
     <Sider trigger={true} collapsible collapsed={collapsed}>
-      <div className="demo-logo-vertical" ><h2 className='text-white fs-5 text-center py-3 mb-0'><span className='sm-logo'>Ged</span><span className='lg-logo'>Ged plus</span></h2></div>
+      <div className="demo-logo-vertical" ><h2 className='text-white fs-5 text-center py-3 mb-0'><span className='sm-logo'>Ged</span><span className='lg-logo'>Général décors</span></h2></div>
       <Menu
         theme="dark"
         mode="inline"
@@ -74,16 +78,7 @@ const MainLayout = () => {
                 label: 'Product List ',
 
                 },
-                {  key: 'brand',
-                icon: <SiBrandfolder className='fs-4'/>,
-                label: 'Brand',
-
-                },
-                {  key: 'list-brand',
-                icon: <SiBrandfolder className='fs-4'/>,
-                label: 'Brand List',
-
-                },
+        
                 {  key: 'category',
                 icon: <BiCategoryAlt className='fs-4'/>,
                 label: 'Category',
@@ -94,16 +89,7 @@ const MainLayout = () => {
                 label: 'Category List',
 
                 },
-                {  key: 'color',
-                icon: <AiOutlineBgColors className='fs-4'/>,
-                label: 'Color',
-
-                },
-                {  key: 'list-color',
-                icon: <AiOutlineBgColors className='fs-4'/>,
-                label: 'Color List',
-
-                },
+           
             ]
           },
           {
@@ -185,10 +171,10 @@ const MainLayout = () => {
        <div className='position-relative'><IoIosNotifications className='fs-4'/> 
        <span className='badge bg-warning rounded-circle p-1 position-absolute'>3</span></div>
        <div className='d-flex gap-3 align-items-center dropdown' >
-        <div><img  width={32} height={32} src='https://stroyka-admin.html.themeforest.scompiler.ru/variants/ltr/images/customers/customer-4-64x64.jpg' alt='' /></div>
+        <div><img  width={32} height={32} src={logo} alt='' /></div>
         <div roles="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >
-            <h5 className='mb-0'>Sahar</h5>
-            <p className='mb-0'>cherifsahar97@gmail.com</p>
+            <h5 className='mb-0'>{userState.firstname } {userState.lastname } </h5>
+            <p className='mb-0'>{userState.email }</p>
         </div>
         <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
 <li >

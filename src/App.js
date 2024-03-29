@@ -11,15 +11,15 @@ import Bloglist from './pages/Bloglist';
 import Blogcatlist from './pages/Blogcatlist';
 import Orders from './pages/Orders';
 import Customers from './pages/Customers';
-import Colorlist from './pages/Colorlist';
+
 import Categorylist from './pages/Categorylist';
-import Brandlist from './pages/Brandlist';
+
 import Productlist from './pages/Productlist';
 import Addblog from './pages/Addblog';
 import Addblogcat from './pages/Addblogcat';
-import AddColor from './pages/AddColor';
+
 import Addcat from './pages/Addcat';
-import Addbrand from './pages/Addbrand';
+
 import Addproduct from './pages/Addproduct';
 import Couponlist from './pages/couponlist';
 import AddCoupon from './pages/AddCoupon';
@@ -43,15 +43,11 @@ function App() {
     <Route path='orders' element={<Orders/>} />
     <Route path='order/:id' element={<ViewOrder/>} />
     <Route path='customers' element={<Customers/>} />
-    <Route path='list-color' element={<Colorlist/>} />
-    <Route path='color' element={<AddColor/>} />
-    <Route path='color/:id' element={<AddColor/>} />
+  
     <Route path='list-category' element={<Categorylist/>} />
     <Route path='category' element={<Addcat/>} />
     <Route path='category/:id' element={<Addcat/>} />
-    <Route path='list-brand' element={<Brandlist/>} />
-    <Route path='brand' element={<Addbrand/>} />
-    <Route path='brand/:id' element={<Addbrand/>} />
+  
         <Route path='product-list' element={<Productlist/>} />
         <Route path='product-list' element={<Productlist/>} />
         <Route path='product-list-pending' element={<Productlistpendding/>} />

@@ -15,20 +15,19 @@ const columns = [
     dataIndex: "title",
     sorter: (a, b) => a.title.length - b.title.length,
   },
-  {
-    title: "Brand",
-    dataIndex: "brand",
-    sorter: (a, b) => a.brand.length - b.brand.length,
-  },
+
   {
     title: "Category",
     dataIndex: "category",
     sorter: (a, b) => a.category.length - b.category.length,
   },
   {
-    title: "Color",
-    dataIndex: "color",
+    title: "Quantité",
+    dataIndex: "quantity",
+    sorter: (a, b) => a.quantity.length - b.quantity.length,
   },
+
+
   {
     title: "Price",
     dataIndex: "price",
@@ -51,9 +50,9 @@ const Productlist = () => {
     data1.push({
       key: i + 1,
       title: productState[i].title,
-      brand: productState[i].brand,
+     
       category: productState[i].category,
-      color: productState[i].color,
+      quantity: productState[i].quantity,
       price: `${productState[i].price}`,
       action: (
         <>

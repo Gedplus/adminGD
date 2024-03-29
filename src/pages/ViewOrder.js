@@ -14,18 +14,12 @@ const columns = [
     title: "Product Name",
     dataIndex: "name",
   },
-  {
-    title: "Brand",
-    dataIndex: "brand",
-  },
+
   {
     title: "Count",
     dataIndex: "count",
   },
-  {
-    title: "Color",
-    dataIndex: "color",
-  },
+
   {
     title: "Amount",
     dataIndex: "amount",
@@ -52,10 +46,10 @@ const ViewOrder = () => {
     data1.push({
       key: i + 1,
       name: orderState[i]?.product?.title,
-      brand: orderState[i]?.product?.brand,
+   
       count: orderState[i]?.quantity,
       amount: orderState[i]?.product?.price,
-      color: orderState[i]?.color?.title,
+
 
       action: (
         <>

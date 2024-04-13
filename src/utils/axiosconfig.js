@@ -8,5 +8,8 @@ export const config = {
       getTokenFromLocalStorage !== null ? getTokenFromLocalStorage.token : ""
     }`,
     Accept: "application/json",
+    "Access-Control-Allow-Headers" : "Content-Type",
+    "Access-Control-Allow-Origin": "*",
+    
   },
 };

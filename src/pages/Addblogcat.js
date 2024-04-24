@@ -11,14 +11,17 @@ import {
   resetState,
   updateABlogCat,
 } from "../features/bcategory/bcategorySlice";
+import {  useParams } from 'react-router-dom';
 let schema = yup.object().shape({
-  title: yup.string().required("Category Name is Required"),
+  title: yup.string().required("Le nom de la catégorie est obligatoire"),
 });
 const Addblogcat = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const getBlogCatId = location.pathname.split("/")[3];
+
+  const { id } = useParams();
+  
   const newBlogCategory = useSelector((state) => state.bCategory);
   const {
     isSuccess,
@@ -29,22 +32,22 @@ const Addblogcat = () => {
     updatedBlogCategory,
   } = newBlogCategory;
   useEffect(() => {
-    if (getBlogCatId !== undefined) {
-      dispatch(getABlogCat(getBlogCatId));
+    if (id !== undefined) {
+      dispatch(getABlogCat(id));
     } else {
       dispatch(resetState());
     }
-  }, [getBlogCatId]);
+  }, [id]);
   useEffect(() => {
     if (isSuccess && createBlogCategory) {
-      toast.success("Blog Category Added Successfullly!");
+      toast.success("Catégorie de blog ajoutée avec succès!");
     }
     if (isSuccess && updatedBlogCategory) {
-      toast.success("Blog Category Updated Successfullly!");
+      toast.success("Catégorie de blog mise à jour avec succès!");
       navigate("/admin/blog-category-list");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Quelque chose s'est mal passé!");
     }
   }, [isSuccess, isError, isLoading]);
   const formik = useFormik({
@@ -54,8 +57,8 @@ const Addblogcat = () => {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      const data = { id: getBlogCatId, blogCatData: values };
-      if (getBlogCatId !== undefined) {
+      const data = { id: id, blogCatData: values };
+      if (id !== undefined) {
         dispatch(updateABlogCat(data));
         dispatch(resetState());
       } else {
@@ -70,7 +73,7 @@ const Addblogcat = () => {
   return (
     <div>
       <h3 className="mb-4  title">
-        {getBlogCatId !== undefined ? "Edit" : "Add"} Blog Category
+        {id !== undefined ? "Edit" : "Add"} Catégorie de blog
       </h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit}>
@@ -80,7 +83,7 @@ const Addblogcat = () => {
             onCh={formik.handleChange("title")}
             onBlr={formik.handleBlur("title")}
             val={formik.values.title}
-            label="Enter Blog Category"
+            label="Entrez dans la catégorie du blog"
             id="blogcat"
           />
           <div className="error">
@@ -90,7 +93,7 @@ const Addblogcat = () => {
             className="btn btn-success border-0 rounded-3 my-5"
             type="submit"
           >
-            {getBlogCatId !== undefined ? "Edit" : "Add"} Blog Category
+            {id !== undefined ? "Edit" : "Add"} Catégorie de blog
           </button>
         </form>
       </div>

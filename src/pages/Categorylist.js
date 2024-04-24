@@ -17,7 +17,7 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Name",
+    title: "Titre",
     dataIndex: "name",
     sorter: (a, b) => a.name.length - b.name.length,
   },
@@ -87,7 +87,7 @@ const Categorylist = () => {
         performAction={() => {
           deleteCategory(pCatId);
         }}
-        title="Are you sure you want to delete this Product Category?"
+        title="Êtes-vous sûr de vouloir supprimer cette catégorie de produits?"
       />
     </div>
   );

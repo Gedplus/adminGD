@@ -120,7 +120,7 @@ useEffect(() => {
     xField: "type",
     yField: "sales",
     color: ({ type }) => {
-      return "#ffd333";
+      return "#ffd700";
     },
     label: {
       position: "middle",

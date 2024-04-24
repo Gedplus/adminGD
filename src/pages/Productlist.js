@@ -11,13 +11,13 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Title",
+    title: "Titre",
     dataIndex: "title",
     sorter: (a, b) => a.title.length - b.title.length,
   },
 
   {
-    title: "Category",
+    title: "Catégorie",
     dataIndex: "category",
     sorter: (a, b) => a.category.length - b.category.length,
   },
@@ -29,7 +29,7 @@ const columns = [
 
 
   {
-    title: "Price",
+    title: "Prix",
     dataIndex: "price",
     sorter: (a, b) => a.price - b.price,
   },
@@ -69,7 +69,7 @@ const Productlist = () => {
   console.log(data1);
   return (
     <div>
-      <h3 className="mb-4 title">Products</h3>
+      <h3 className="mb-4 title">Produits</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>

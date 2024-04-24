@@ -11,13 +11,15 @@ import {
   resetState,
   updateAProductCategory,
 } from "../features/pcategory/pcategorySlice";
+import {  useParams } from 'react-router-dom';
 let schema = yup.object().shape({
-  title: yup.string().required("Category Name is Required"),
+  title: yup.string().required("Le nom de la catégorie est obligatoire"),
 });
 const Addcat = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const getPCatId = location.pathname.split("/")[3];
+  const { id } = useParams();
+  
   const navigate = useNavigate();
   const newCategory = useSelector((state) => state.pCategory);
   const {
@@ -29,22 +31,22 @@ const Addcat = () => {
     updatedCategory,
   } = newCategory;
   useEffect(() => {
-    if (getPCatId !== undefined) {
-      dispatch(getAProductCategory(getPCatId));
+    if (id !== undefined) {
+      dispatch(getAProductCategory(id));
     } else {
       dispatch(resetState());
     }
-  }, [getPCatId]);
+  }, [id]);
   useEffect(() => {
     if (isSuccess && createdCategory) {
-      toast.success("Category Added Successfullly!");
+      toast.success("Catégorie ajoutée avec succès!");
     }
     if (isSuccess && updatedCategory) {
-      toast.success("Category Updated Successfullly!");
+      toast.success("Catégorie mise à jour avec succès!");
       navigate("/admin/list-category");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Quelque chose s'est mal passé!");
     }
   }, [isSuccess, isError, isLoading]);
   const formik = useFormik({
@@ -54,8 +56,8 @@ const Addcat = () => {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      if (getPCatId !== undefined) {
-        const data = { id: getPCatId, pCatData: values };
+      if (id !== undefined) {
+        const data = { id: id, pCatData: values };
         dispatch(updateAProductCategory(data));
         dispatch(resetState());
       } else {
@@ -70,13 +72,13 @@ const Addcat = () => {
   return (
     <div>
       <h3 className="mb-4  title">
-        {getPCatId !== undefined ? "Edit" : "Add"} Category
+        {id !== undefined ? "Edit" : "Add"} Catégorie
       </h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit}>
           <CustomInput
             type="text"
-            label="Enter Product Category"
+            label="Entrez la catégorie de produit"
             onCh={formik.handleChange("title")}
             onBlr={formik.handleBlur("title")}
             val={formik.values.title}
@@ -89,7 +91,7 @@ const Addcat = () => {
             className="btn btn-success border-0 rounded-3 my-5"
             type="submit"
           >
-            {getPCatId !== undefined ? "Edit" : "Add"} Category
+            {id !== undefined ? "Edit" : "Add"} Catégorie
           </button>
         </form>
       </div>

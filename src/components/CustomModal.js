@@ -10,7 +10,7 @@ const CustomModal = (props) => {
       onOk={performAction}
       onCancel={hideModal}
       okText="Ok"
-      cancelText="Cancel"
+      cancelText="Annuler"
     >
       <p>{title}</p>
     </Modal>

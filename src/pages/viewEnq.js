@@ -7,18 +7,20 @@ import {
   updateAEnquiry,
 } from "../features/enquiry/enquirySlice";
 import { BiArrowBack } from "react-icons/bi";
-
+import {  useParams } from 'react-router-dom';
 const ViewEnq = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const getEnqId = location.pathname.split("/")[3];
+
+  
+  const { id } = useParams();
   const enqState = useSelector((state) => state.enquiry);
   const { enqName, enqMobile, enqEmail, enqComment, enqStatus } = enqState;
 
   useEffect(() => {
-    dispatch(getAEnquiry(getEnqId));
-  }, [getEnqId]);
+    dispatch(getAEnquiry(id));
+  }, [id]);
   const goBack = () => {
     navigate(-1);
   };
@@ -28,23 +30,23 @@ const ViewEnq = () => {
     dispatch(updateAEnquiry(data));
     dispatch(resetState());
     setTimeout(() => {
-      dispatch(getAEnquiry(getEnqId));
+      dispatch(getAEnquiry(id));
     }, 100);
   };
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center">
-        <h3 className="mb-4 title">View Enquiry</h3>
+        <h3 className="mb-4 title">Voir la demande</h3>
         <button
           className="bg-transpatent border-0 fs-6 mb-0 d-flex align-items-center gap-1"
           onClick={goBack}
         >
-          <BiArrowBack className="fs-5" /> Go Back
+          <BiArrowBack className="fs-5" /> Retourner
         </button>
       </div>
       <div className="mt-5 bg-white p-4 d-flex gap-3 flex-column rounded-3">
         <div className="d-flex align-items-center gap-3">
-          <h6 className="mb-0">Name:</h6>
+          <h6 className="mb-0">Nom:</h6>
           <p className="mb-0">{enqName}</p>
         </div>
         <div className="d-flex align-items-center gap-3">
@@ -75,7 +77,7 @@ const ViewEnq = () => {
               defaultValue={enqStatus ? enqStatus : "Submitted"}
               className="form-control form-select"
               id=""
-              onChange={(e) => setEnquiryStatus(e.target.value, getEnqId)}
+              onChange={(e) => setEnquiryStatus(e.target.value, id)}
             >
               <option value="Submitted">Submitted</option>
               <option value="Contacted">Contacted</option>

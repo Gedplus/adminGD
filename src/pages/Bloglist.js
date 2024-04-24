@@ -14,11 +14,11 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Title",
+    title: "Titre",
     dataIndex: "name",
   },
   {
-    title: "Category",
+    title: "Catégorie",
     dataIndex: "category",
   },
   {
@@ -79,7 +79,7 @@ const Bloglist = () => {
   };
   return (
     <div>
-      <h3 className="mb-4 title">Blogs List</h3>
+      <h3 className="mb-4 title">Liste des blogs</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
@@ -89,7 +89,7 @@ const Bloglist = () => {
         performAction={() => {
           deleteBlog(blogId);
         }}
-        title="Are you sure you want to delete this blog?"
+        title="Êtes-vous sûr de vouloir supprimer ce blog?"
       />
     </div>
   );

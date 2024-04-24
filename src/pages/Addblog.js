@@ -16,17 +16,18 @@ import {
   updateABlog,
 } from "../features/blog/blogSlice";
 import { getCategories } from "../features/bcategory/bcategorySlice";
-
+import {  useParams } from 'react-router-dom';
 let schema = yup.object().shape({
-  title: yup.string().required("Title is Required"),
-  description: yup.string().required("Description is Required"),
-  category: yup.string().required("Category is Required"),
+  title: yup.string().required("Le titre est requis"),
+  description: yup.string().required("Une description est requise"),
+  category: yup.string().required("La catégorie est obligatoire"),
 });
 const Addblog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const getBlogId = location.pathname.split("/")[3];
+
+  const { id } = useParams();
   const imgState = useSelector((state) => state.upload.images);
   const bCatState = useSelector((state) => state.bCategory.bCategories);
   const blogState = useSelector((state) => state.blogs);
@@ -42,13 +43,13 @@ const Addblog = () => {
     updatedBlog,
   } = blogState;
   useEffect(() => {
-    if (getBlogId !== undefined) {
-      dispatch(getABlog(getBlogId));
+    if (id !== undefined) {
+      dispatch(getABlog(id));
       img.push(blogImages);
     } else {
       dispatch(resetState());
     }
-  }, [getBlogId]);
+  }, [id]);
 
   useEffect(() => {
     dispatch(resetState());
@@ -57,14 +58,14 @@ const Addblog = () => {
 
   useEffect(() => {
     if (isSuccess && createdBlog) {
-      toast.success("Blog Added Successfullly!");
+      toast.success("Blog ajouté avec succès!");
     }
     if (isSuccess && updatedBlog) {
-      toast.success("Blog Updated Successfullly!");
+      toast.success("Blog mis à jour avec succès!");
       navigate("/admin/blog-list");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Quelque chose s'est mal passé!");
     }
   }, [isSuccess, isError, isLoading]);
 
@@ -90,8 +91,8 @@ const Addblog = () => {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      if (getBlogId !== undefined) {
-        const data = { id: getBlogId, blogData: values };
+      if (id !== undefined) {
+        const data = { id: id, blogData: values };
         dispatch(updateABlog(data));
         dispatch(resetState());
       } else {
@@ -107,7 +108,7 @@ const Addblog = () => {
   return (
     <div>
       <h3 className="mb-4 title">
-        {getBlogId !== undefined ? "Edit" : "Add"} Blog
+        {id !== undefined ? "Edit" : "Add"} Blog
       </h3>
 
       <div className="">
@@ -115,7 +116,7 @@ const Addblog = () => {
           <div className="mt-4">
             <CustomInput
               type="text"
-              label="Enter Blog Title"
+              label="Entrez le titre du blog"
               name="title"
               onCh={formik.handleChange("title")}
               onBlr={formik.handleBlur("title")}
@@ -133,7 +134,7 @@ const Addblog = () => {
             className="form-control py-3  mt-3"
             id=""
           >
-            <option value="">Select Blog Category</option>
+            <option value="">Sélectionnez la catégorie du blog</option>
             {bCatState.map((i, j) => {
               return (
                 <option key={j} value={i.title}>
@@ -164,7 +165,7 @@ const Addblog = () => {
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
                     <p>
-                      Drag 'n' drop some files here, or click to select files
+                    Faites glisser et déposez quelques fichiers ici, ou cliquez pour sélectionner des fichiers
                     </p>
                   </div>
                 </section>
@@ -191,7 +192,7 @@ const Addblog = () => {
             className="btn btn-success border-0 rounded-3 my-5"
             type="submit"
           >
-            {getBlogId !== undefined ? "Edit" : "Add"} Blog
+            {id !== undefined ? "Edit" : "Add"} Blog
           </button>
         </form>
       </div>

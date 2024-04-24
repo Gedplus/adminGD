@@ -11,15 +11,15 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Name",
+    title: "Nom",
     dataIndex: "name",
   },
   {
-    title: "Product",
+    title: "Produit",
     dataIndex: "product",
   },
   {
-    title: "Amount",
+    title: "Montant",
     dataIndex: "amount",
   },
   {
@@ -47,7 +47,7 @@ const Orders = () => {
       name: orderState[i]?.user?.firstname,
       product: (
         <Link to={`/admin/order/${orderState[i]?._id}`}>
-          View Orders
+        Afficher les commandes
         </Link>
       ),
       amount: orderState[i].totalPrice,

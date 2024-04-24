@@ -12,19 +12,19 @@ const columns = [
     dataIndex: "codart",
   },
   {
-    title: "Title",
+    title: "Titre",
     dataIndex: "desart",
     
   },
 
   {
-    title: "Quantity",
+    title: "Quantité",
     dataIndex: "stkfin",
 
   },
 
   {
-    title: "Price",
+    title: "Prix",
     dataIndex: "PURNTTC",
 
   },
@@ -54,6 +54,7 @@ const productState1 = useSelector((state) => state.product.products);
   const data1 = [];
 
   for (let i = 0; i < productState?.length; i++) {
+    console.log(encodeURIComponent(productState[i].desart))
     const Bruno = productState1.find((person) => person.codeArt === productState[i].codart)
 if(Bruno == undefined)
 {  data1.push({
@@ -65,7 +66,7 @@ if(Bruno == undefined)
   
   action: (
     <>
-      <Link to={`/admin/product/${productState[i].codart}/${productState[i].desart}/${productState[i].stkfin}/${productState[i].PURNTTC}`} className=" fs-3 text-danger">
+      <Link to={`/admin/product/${productState[i].codart}/${encodeURIComponent(productState[i].desart)}/${productState[i].stkfin}/${productState[i].PURNTTC}`} className=" fs-3 text-danger">
         <BiEdit />
       </Link>
    
@@ -77,7 +78,7 @@ if(Bruno == undefined)
   console.log(data1);
   return (
     <div>
-      <h3 className="mb-4 title">Products</h3>
+      <h3 className="mb-4 title">Produits</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>

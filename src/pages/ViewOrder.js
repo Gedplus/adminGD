@@ -11,12 +11,12 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Product Name",
+    title: "Nom du produit",
     dataIndex: "name",
   },
 
   {
-    title: "Count",
+    title: "Quantité",
     dataIndex: "count",
   },
 
@@ -65,7 +65,7 @@ const ViewOrder = () => {
   }
   return (
     <div>
-      <h3 className="mb-4 title">View Order</h3>
+      <h3 className="mb-4 title">Voir l'ordre</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>

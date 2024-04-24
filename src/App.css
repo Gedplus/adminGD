@@ -20,7 +20,7 @@ body{
   min-height: 100vh;
 }
 .demo-logo-vertical{
-  background-color: #ffd333;
+  background-color: #ffd700;
   margin: 0;
   height: 64px;
 }
@@ -40,7 +40,7 @@ body{
 }
 :root{
   --color-212529: #212529;
-  --color-ffd333: #ffd333;
+  --color-ffd333: #ffd700;
   --color-47ad24: #47ad24;
   --color-e52e2e:#e52e2e;
   --color-828599: #828599;

@@ -9,20 +9,20 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getCategories } from "../features/pcategory/pcategorySlice";
-
+import {  useParams } from 'react-router-dom';
 import { Select } from "antd";
 import Dropzone from "react-dropzone";
 import { delImg, uploadImg } from "../features/upload/uploadSlice";
 import { createProducts, resetState } from "../features/product/productSlice";
 let schema = yup.object().shape({
-  title: yup.string().required("Title is Required"),
-  description: yup.string().required("Description is Required"),
-  price: yup.number().required("Price is Required"),
+  title: yup.string().required("Le titre est requis"),
+  description: yup.string().required("Une description est requise"),
+  price: yup.number().required("Le prix est obligatoire"),
 
-  category: yup.string().required("Category is Required"),
-  tags: yup.string().required("Tag is Required"),
+  category: yup.string().required("La catégorie est obligatoire"),
+  tags: yup.string().required("La balise est obligatoire"),
  
-  quantity: yup.number().required("Quantity is Required"),
+  quantity: yup.number().required("La quantité est requise"),
   
 });
 
@@ -30,8 +30,15 @@ const Addproduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const { codart } = useParams();
+  const { desart } = useParams();
+  const { stkfin } = useParams();
+  const { PURNTTC } = useParams();
   const getproductId = location.pathname.split("/")[3];
-console.log(getproductId)
+console.log(codart ,"dd")
+console.log(desart ,"dd")
+console.log(stkfin ,"dd")
+console.log(PURNTTC ,"dd")
   const getproductdesart = location.pathname.split("/")[4];
   const getproductstkfin = location.pathname.split("/")[5];
   const getproductPURNTTC = location.pathname.split("/")[6];
@@ -54,10 +61,10 @@ console.log(getproductId)
 
   useEffect(() => {
     if (isSuccess && createdProduct) {
-      toast.success("Product Added Successfullly!");
+      toast.success("Produit ajouté avec succès!");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Quelque chose s'est mal passé!");
     }
   }, [isSuccess, isError, isLoading]);
 
@@ -76,15 +83,15 @@ console.log(getproductId)
   }, [ img]);
   const formik = useFormik({
     initialValues: {
-      codeArt: getproductId,
-      title: getproductdesart,
+      codeArt: codart,
+      title: desart,
       description: "",
-      price: getproductPURNTTC,
+      price: PURNTTC,
 
       category: "",
       tags: "",
 
-      quantity: getproductstkfin,
+      quantity: stkfin,
       images: "",
     },
     validationSchema: schema,
@@ -100,7 +107,7 @@ console.log(getproductId)
 
   return (
     <div>
-      <h3 className="mb-4 title">Add Product</h3>
+      <h3 className="mb-4 title">Ajouter un produit</h3>
       <div>
         <form
           onSubmit={formik.handleSubmit}
@@ -108,7 +115,7 @@ console.log(getproductId)
         >
           <CustomInput
             type="text"
-            label="Enter Product Title"
+            label="Entrez le titre du produit"
             name="title"
             onCh={formik.handleChange("title")}
             onBlr={formik.handleBlur("title")}
@@ -131,7 +138,7 @@ console.log(getproductId)
           </div>
           <CustomInput
             type="number"
-            label="Enter Product Price"
+            label="Entrez le prix du produit"
             name="price"
             onCh={formik.handleChange("price")}
             onBlr={formik.handleBlur("price")}
@@ -150,7 +157,7 @@ console.log(getproductId)
             className="form-control py-3 mb-3"
             id=""
           >
-            <option value="">Select Category</option>
+            <option value="">Choisir une catégorie</option>
             {catState.map((i, j) => {
               return (
                 <option key={j} value={i.title}>
@@ -171,7 +178,7 @@ console.log(getproductId)
             id=""
           >
             <option value="" disabled>
-              Select tags
+            Sélectionnez les tags
             </option>
             <option value="featured">Featured</option>
             <option value="popular">Popular</option>
@@ -184,7 +191,7 @@ console.log(getproductId)
      
           <CustomInput
             type="number"
-            label="Enter Product Quantity"
+            label="Entrez la quantité de produit"
             name="quantity"
             onCh={formik.handleChange("quantity")}
             onBlr={formik.handleBlur("quantity")}
@@ -203,7 +210,7 @@ console.log(getproductId)
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
                     <p>
-                      Drag 'n' drop some files here, or click to select files
+                    Faites glisser et déposez quelques fichiers ici, ou cliquez pour sélectionner des fichiers
                     </p>
                   </div>
                 </section>
@@ -229,7 +236,7 @@ console.log(getproductId)
             className="btn btn-success border-0 rounded-3 my-5"
             type="submit"
           >
-            Add Product
+           Ajouter un produit
           </button>
         </form>
       </div>

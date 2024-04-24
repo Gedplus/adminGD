@@ -30,7 +30,7 @@ const columns = [
     dataIndex: "mobile",
   },
   {
-    title: "Staus",
+    title: "Status",
     dataIndex: "status",
   },
 
@@ -123,7 +123,7 @@ const Enquiries = () => {
         performAction={() => {
           deleteEnq(enqId);
         }}
-        title="Are you sure you want to delete this enquiry?"
+        title="Êtes-vous sûr de vouloir supprimer cette demande?"
       />
    
     </div>

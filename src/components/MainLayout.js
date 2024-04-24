@@ -56,37 +56,37 @@ const MainLayout = () => {
           {
             key: 'customers',
             icon: <AiOutlineUser className='fs-4'/>,
-            label: 'Customers',
+            label: 'Clients',
           },
           {
             key: 'Catalog',
             icon: <AiOutlineShoppingCart className='fs-4' />,
-            label: 'Catalog',
+            label: 'Catalogue',
             children:[
                 {  key: 'product',
                 icon: <AiOutlineShoppingCart className='fs-4'/>,
-                label: 'Add Product',
+                label: 'Ajouter un produit',
 
                 },
                 {  key: 'product-list-pending',
                 icon: <AiOutlineShoppingCart className='fs-4'/>,
-                label: 'Product List  pending',
+                label: 'Liste de produits en attente',
 
                 },
                 {  key: 'product-list',
                 icon: <AiOutlineShoppingCart className='fs-4'/>,
-                label: 'Product List ',
+                label: 'Liste de produits',
 
                 },
         
                 {  key: 'category',
                 icon: <BiCategoryAlt className='fs-4'/>,
-                label: 'Category',
+                label: 'Catégorie',
 
                 },
                 {  key: 'list-category',
                 icon: <BiCategoryAlt className='fs-4'/>,
-                label: 'Category List',
+                label: 'Liste des catégories',
 
                 },
            
@@ -105,12 +105,12 @@ const MainLayout = () => {
               {
                 key: "coupon",
                 icon: <ImBlog className="fs-4" />,
-                label: "Add Coupon",
+                label: "Ajouter un coupon",
               },
               {
                 key: "coupon-list",
                 icon: <RiCouponLine className="fs-4" />,
-                label: "Coupon List",
+                label: "Liste de coupons",
               },
             ],
           },
@@ -122,22 +122,22 @@ const MainLayout = () => {
                 {
                     key: 'blog',
                     icon: <ImBlog className='fs-4'/>,
-                    label: 'Add Blog',
+                    label: 'Ajouter un blog',
                   },
                   {
                     key: 'blog-list',
                     icon: <FaBloggerB className='fs-4'/>,
-                    label: 'Blog List',
+                    label: 'Liste des blogs',
                   },
                   {
                     key: 'blog-category',
                     icon: <ImBlog className='fs-4'/>,
-                    label: 'Add Blog Category',
+                    label: 'Ajouter une catégorie de blog',
                   },
                   {
                     key: 'blog-category-list',
                     icon: <FaBloggerB className='fs-4'/>,
-                    label: 'Blog Category List',
+                    label: 'Liste des catégories de blog',
                   },
             ]
           },
@@ -178,10 +178,10 @@ const MainLayout = () => {
         </div>
         <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
 <li >
-  <Link className='dropdown-item py-1 mb-1' style={{height:"auto" , lineHeight:"20px"}} to='/'>View Profile</Link>
+  <Link className='dropdown-item py-1 mb-1' style={{height:"auto" , lineHeight:"20px"}} to='/'>Voir le profil</Link>
 </li>
 <li >
-  <Link className='dropdown-item py-1 mb-1'style={{height:"auto" , lineHeight:"20px"}} to='/'>Signout</Link>
+  <Link className='dropdown-item py-1 mb-1'style={{height:"auto" , lineHeight:"20px"}} to='/'>Se déconnecter</Link>
 </li>
 
         </div>

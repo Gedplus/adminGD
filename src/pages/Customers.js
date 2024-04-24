@@ -8,7 +8,7 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Name",
+    title: "Titre",
     dataIndex: "name",
     sorter: (a, b) => a.name.length - b.name.length,
   },
@@ -42,7 +42,7 @@ const Customers = () => {
 
   return (
     <div>
-      <h3 className="mb-4 title">Customers</h3>
+      <h3 className="mb-4 title">Clients</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>

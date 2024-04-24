@@ -14,7 +14,7 @@ const columns = [
   },
 
   {
-    title: "Name",
+    title: "Titre",
     dataIndex: "name",
     sorter: (a, b) => a.name.length - b.name.length,
   },
@@ -24,7 +24,7 @@ const columns = [
     sorter: (a, b) => a.discount - b.discount,
   },
   {
-    title: "Expiry",
+    title: "Expiration",
     dataIndex: "expiry",
     sorter: (a, b) => a.name.length - b.name.length,
   },
@@ -95,7 +95,7 @@ const Couponlist = () => {
         performAction={() => {
           deleteCoupon(couponId);
         }}
-        title="Are you sure you want to delete this Coupon?"
+        title="Êtes-vous sûr de vouloir supprimer ce coupon?"
       />
 
   
